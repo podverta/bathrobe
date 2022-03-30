@@ -12,7 +12,45 @@ class Item(models.Model):
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
 
-class Sample(models.Model):
+class Category(models.Model):
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+        abstract = True
+
+    type_name = models.ForeignKey(Item, on_delete=models.CASCADE,
+                                  verbose_name='Тип товара')
+    image = models.ImageField(upload_to='products/%Y/%m/%d',
+                              blank=True,
+                              verbose_name='Изображение')
+    quantity = models.IntegerField(verbose_name='Количество')
+
+
+    def __str__(self):
+        return self.type_name
+
+class Toys(Category):
+    toys_choices = [
+        ('Зайка Ми', 'Зайка Ми'),
+        ('Jack&Lin', 'Jack&Lin'),
+        ('Подария', 'Подария'),
+        ('Other', 'Другие'),
+    ]
+    toys = models.CharField(max_length=20, choices=toys_choices,
+                            verbose_name='Тип игрушки')
+
+    comments = models.TextField(max_length=500, blank=True,
+                                verbose_name='Комментарий')
+
+    class Meta:
+        verbose_name = 'Игрушка'
+        verbose_name_plural = 'Игрушки'
+
+    def __str__(self):
+        return "{} : {} : {} шт.".format(self.type_name,
+                                         self.toys, self.quantity,)
+
+class Bathrobe(Category):
     size_choices = [
         ('L', 'L'),
         ('XL', 'XL'),
@@ -20,13 +58,9 @@ class Sample(models.Model):
         ('XXXL', 'XXXL'),
     ]
     type_choices = [
-        ('Terry', 'Махровый'),
-        ('Fleece', 'Флисовый'),
-    ]
-    toys_choices = [
-        ('Mi', 'Зайка МИ'),
-        ('JL', 'Jack&Lin'),
-        ('Podariy', 'Подария'),
+        ('Махровый', 'Махровый'),
+        ('Флисовый', 'Флисовый'),
+        ('Другие', 'Другие'),
     ]
     color_choices = [
         ('Синий', 'Синий'),
@@ -47,20 +81,60 @@ class Sample(models.Model):
         ('Антрацит', 'Антрацит'),
         ('Джинс', 'Джинс'),
     ]
-    type_name = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='products', verbose_name='Тип товара')
-    name = models.CharField(max_length=20, unique=True)
-    image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True, verbose_name='Изображение')
-    type = models.CharField(max_length=20, choices=type_choices, verbose_name='Материал')
-    color = models.CharField(max_length=20, choices=color_choices, verbose_name='Цвет')
-    size = models.CharField(max_length=20, choices=size_choices, verbose_name='Размер')
-    toys = models.CharField(max_length=20, choices=toys_choices, blank=True, verbose_name='Тип игрушки')
-    quantity = models.IntegerField()
-    comments = models.TextField(max_length=500, blank=True,)
+    type = models.CharField(max_length=20, choices=type_choices,
+                            verbose_name='Материал')
+    color = models.CharField(max_length=20, choices=color_choices,
+                             verbose_name='Цвет')
+    size = models.CharField(max_length=20, choices=size_choices,
+                            verbose_name='Размер')
+    comments = models.TextField(max_length=500, blank=True,
+                                verbose_name='Комментарий')
 
     class Meta:
-        verbose_name = 'Пример'
-        verbose_name_plural = 'Примеры'
-
+        verbose_name = 'Халат'
+        verbose_name_plural = 'Халаты'
 
     def __str__(self):
-        return self.name
+        return "{} : {} : {} : {} : {} шт.".format(self.type_name, self.type,
+                                          self.color, self.size, self.quantity)
+class Towel(Category):
+    towel_size_choices = [
+        ('50*90', '50*90'),
+        ('70*130', '70*130'),
+    ]
+    towel_color_choices = [
+        ('Синий', 'Синий'),
+        ('Зеленый', 'Зеленый'),
+        ('Морская волна', 'Морская волна'),
+        ('Розовый', 'Розовый'),
+        ('Темно-сини', 'Темно-сини'),
+        ('Голубой', 'Голубой'),
+        ('Белый', 'Белый'),
+        ('Малиновый', 'Малиновый'),
+        ('Сиреневый', 'Сиреневый'),
+        ('Черный', 'Черный'),
+        ('Бордовый', 'Бордовый'),
+        ('Серый', 'Серый'),
+        ('Темно-серый', 'Темно-серый'),
+        ('Кремовый', 'Кремовый'),
+        ('Фиолетовый', 'Фиолетовый'),
+        ('Пыльно-зеленый', 'Пыльно-зеленый'),
+        ('Темно-коричневый', 'Темно-коричневый'),
+        ('Светло-коричневый', 'Светло-коричневый'),
+        ('Антрацит', 'Антрацит'),
+        ('Джинс', 'Джинс'),
+    ]
+    color = models.CharField(max_length=20, choices=towel_color_choices,
+                             verbose_name='Цвет')
+    size = models.CharField(max_length=20, choices=towel_size_choices,
+                            verbose_name='Размер')
+    comments = models.TextField(max_length=500, blank=True,
+                                verbose_name='Комментарий')
+
+    class Meta:
+        verbose_name = 'Полотенце'
+        verbose_name_plural = 'Полотенца'
+
+    def __str__(self):
+        return "{} : {} : {} : {} шт.".format(self.type_name, self.size,
+                                self.color, self.quantity)
