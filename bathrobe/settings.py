@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     #my apps
     'bb',
+    #tables
+    'django_tables2'
     #default apps
     'django.contrib.admin',
     'django.contrib.auth',
