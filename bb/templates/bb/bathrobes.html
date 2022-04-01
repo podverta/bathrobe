@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Халаты</title>
+</head>
+<body>
+
+{% block content %}
+
+<table border="1">
+    <tr><th>Тип</th><th>Цвет</th><th>Размер</th><th>Остаток</th></tr>
+    {% for bathrobe in bathrobes %}
+            <tr><td>{{ bathrobe.type }}</td><td>{{ bathrobe.color }}</td><td>{{ bathrobe.size }}</td><td>{{ bathrobe.quantity }}</td></tr>
+    {% endfor %}
+    <tr><td colspan="3">Всего</td><td>{{ total }}</td></tr>
+</table>
+
+{% endblock content %}
+</body>
+</html>
