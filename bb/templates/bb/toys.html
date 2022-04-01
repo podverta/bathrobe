@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Toys</title>
+</head>
+<body>
+
+{% block content %}
+
+<table border="1">
+    <tr><th>Тип игрушки</th><th>Остаток</th></tr>
+    {% for toy in toys %}
+            <tr><td>{{ toy.toys }}</td><td>{{ toy.quantity }}</td></tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}
+</body>
+</html>
