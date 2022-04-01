@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Полотенца</title>
+</head>
+<body>
+
+{% block content %}
+
+<table border="1">
+    <tr><th>Размер</th><th>Цвет</th><th>Остаток</th></tr>
+    {% for towel in towels %}
+            <tr><td>{{ towel.size }}</td><td>{{ towel.color }}</td><td>{{ towel.quantity }}</td></tr>
+    {% endfor %}
+    <tr><td colspan="2">Всего</td><td>{{ total }}</td></tr>
+</table>
+
+{% endblock content %}
+</body>
+</html>

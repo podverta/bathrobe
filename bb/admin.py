@@ -33,5 +33,5 @@ class BathrobeAdmin(admin.ModelAdmin):
 
 admin.site.register(Item)
 admin.site.register(Toys, ToysAdmin)
-admin.site.register(Towel, TowelAdmin)
-admin.site.register(Bathrobe, BathrobeAdmin)
+admin.site.register(Towels, TowelAdmin)
+admin.site.register(Bathrobes, BathrobeAdmin)

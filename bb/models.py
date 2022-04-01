@@ -51,7 +51,7 @@ class Toys(Category):
         return "{} : {} : {} шт.".format(self.type_name,
                                          self.toys, self.quantity,)
 
-class Bathrobe(Category):
+class Bathrobes(Category):
     size_choices = [
         ('L', 'L'),
         ('XL', 'XL'),
@@ -98,7 +98,7 @@ class Bathrobe(Category):
     def __str__(self):
         return "{} : {} : {} : {} : {} шт.".format(self.type_name, self.type,
                                           self.color, self.size, self.quantity)
-class Towel(Category):
+class Towels(Category):
     towel_size_choices = [
         ('50*90', '50*90'),
         ('70*130', '70*130'),

@@ -9,5 +9,7 @@ urlpatterns = [
 #    path('', views.index, name='index'),
     #page with the list all themes
     path('toys/', views.toys, name='toys'),
+    path('towels/', views.towels, name='towels'),
+    path('bathrobes/', views.bathrobes, name='bathrobes'),
     ]
 

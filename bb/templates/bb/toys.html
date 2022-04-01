@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Toys</title>
+    <title>Игрушки</title>
 </head>
 <body>
 
@@ -13,6 +13,7 @@
     {% for toy in toys %}
             <tr><td>{{ toy.toys }}</td><td>{{ toy.quantity }}</td></tr>
     {% endfor %}
+    <tr><td>Всего</td><td>{{ total }}</td></tr>
 </table>
 
 {% endblock content %}
