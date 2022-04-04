@@ -13,7 +13,7 @@
     {% for bathrobe in bathrobes %}
             <tr><td>{{ bathrobe.type }}</td><td>{{ bathrobe.color }}</td><td>{{ bathrobe.size }}</td><td>{{ bathrobe.quantity }}</td><td>{{ bathrobe.price }}</td></tr>
     {% endfor %}
-    <tr><td colspan="3">Всего</td><td>{{ total }}</td></tr>
+    <tr><td colspan="3">Всего</td><td>{{ total }}</td><td>{{ total_price }}</td></tr>
 </table>
 
 {% endblock content %}
