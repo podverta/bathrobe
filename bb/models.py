@@ -39,9 +39,12 @@ class Toys(Category):
     ]
     toys = models.CharField(max_length=20, choices=toys_choices,
                             verbose_name='Тип игрушки')
+    price = models.DecimalField(max_digits=12, decimal_places=2,
+                                verbose_name='Стоимость')
 
     comments = models.TextField(max_length=500, blank=True,
                                 verbose_name='Комментарий')
+
 
     class Meta:
         verbose_name = 'Игрушка'
@@ -88,6 +91,8 @@ class Bathrobes(Category):
                              verbose_name='Цвет')
     size = models.CharField(max_length=20, choices=size_choices,
                             verbose_name='Размер')
+    price = models.DecimalField(max_digits=12, decimal_places=2,
+                                verbose_name='Стоимость', default='3300')
     comments = models.TextField(max_length=500, blank=True,
                                 verbose_name='Комментарий')
 
@@ -129,6 +134,8 @@ class Towels(Category):
                              verbose_name='Цвет')
     size = models.CharField(max_length=20, choices=towel_size_choices,
                             verbose_name='Размер')
+    price = models.DecimalField(max_digits=12, decimal_places=2,
+                                verbose_name='Стоимость')
     comments = models.TextField(max_length=500, blank=True,
                                 verbose_name='Комментарий')
 

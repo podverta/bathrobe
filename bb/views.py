@@ -21,7 +21,9 @@ def bathrobes(request):
     """display all bathrobes"""
     bathrobes = Bathrobes.objects.all()
     total = Bathrobes.objects.aggregate(Sum('quantity'))
-    context = {'bathrobes': bathrobes, 'total': total.get('quantity__sum')}
+    price = Bathrobes.objects.aggregate(Sum('price') * Sum('quantity'))
+    context = {'bathrobes': bathrobes, 'total': total.get('quantity__sum'),
+               'price': price.get(),}
     return render(request, 'bb/bathrobes.html', context)
 
 
