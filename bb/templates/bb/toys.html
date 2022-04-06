@@ -9,11 +9,12 @@
 {% block content %}
 
 <table border="1">
-    <tr><th>Тип игрушки</th><th>Остаток</th></tr>
+    <tr><th>Тип</th><th>Модель</th><th>Остаток</th><th>Стоимость</th><th>Стоимость всего</th></tr>
     {% for toy in toys %}
-            <tr><td>{{ toy.toys }}</td><td>{{ toy.quantity }}</td></tr>
+            <tr><td>{{ toy.type_name }}</td><td>{{ toy.toys }}</td>
+                <td>{{ toy.quantity }}</td><td>{{ toy.price }}</td><td>{{ toy.price_quantity }}</td></tr>
     {% endfor %}
-    <tr><td>Всего</td><td>{{ total }}</td></tr>
+    <tr><td colspan="2">Всего</td><td>{{ total }}</td><td>{{ avg_price }}</td><td>{{ price_all }}</td></tr>
 </table>
 
 {% endblock content %}

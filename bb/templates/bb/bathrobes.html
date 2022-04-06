@@ -9,11 +9,12 @@
 {% block content %}
 
 <table border="1">
-    <tr><th>Тип</th><th>Цвет</th><th>Размер</th><th>Остаток</th><th>Стоимость</th></tr>
+    <tr><th>Тип</th><th>Цвет</th><th>Размер</th><th>Остаток</th><th>Стоимость</th><th>Стоимость всего</th></tr>
     {% for bathrobe in bathrobes %}
-            <tr><td>{{ bathrobe.type }}</td><td>{{ bathrobe.color }}</td><td>{{ bathrobe.size }}</td><td>{{ bathrobe.quantity }}</td><td>{{ bathrobe.price }}</td></tr>
+            <tr><td>{{ bathrobe.type }}</td><td>{{ bathrobe.color }}</td><td>{{ bathrobe.size }}</td>
+                <td>{{ bathrobe.quantity }}</td><td>{{ bathrobe.price }}</td><td>{{ bathrobe.price_quantity }}</td></tr>
     {% endfor %}
-    <tr><td colspan="3">Всего</td><td>{{ total }}</td><td>{{ total_price }}</td></tr>
+    <tr><td colspan="3">Всего</td><td>{{ total }}</td><td>{{ avg_price }}</td><td>{{ price_all }}</td></tr>
 </table>
 
 {% endblock content %}

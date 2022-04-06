@@ -45,6 +45,12 @@ class Toys(Category):
     comments = models.TextField(max_length=500, blank=True,
                                 verbose_name='Комментарий')
 
+    price_quantity = models.DecimalField(max_digits=12, decimal_places=2,
+                                         verbose_name='Общая стоимость')
+
+    def save(self, *args, **kwargs):
+        self.price_quantity = self.price * self.quantity
+        super(Toys, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Игрушка'
@@ -95,10 +101,16 @@ class Bathrobes(Category):
                                 verbose_name='Стоимость', default='3300')
     comments = models.TextField(max_length=500, blank=True,
                                 verbose_name='Комментарий')
+    price_quantity = models.DecimalField(max_digits=12, decimal_places=2,
+                                         verbose_name='Общая стоимость')
 
+    def save(self, *args, **kwargs):
+        self.price_quantity = self.price * self.quantity
+        super(Bathrobes, self).save(*args, **kwargs)
     class Meta:
         verbose_name = 'Халат'
         verbose_name_plural = 'Халаты'
+
 
     def __str__(self):
         return "{} : {} : {} : {} : {} шт.".format(self.type_name, self.type,
@@ -138,6 +150,12 @@ class Towels(Category):
                                 verbose_name='Стоимость')
     comments = models.TextField(max_length=500, blank=True,
                                 verbose_name='Комментарий')
+    price_quantity = models.DecimalField(max_digits=12, decimal_places=2,
+                                         verbose_name='Общая стоимость')
+
+    def save(self, *args, **kwargs):
+        self.price_quantity = self.price * self.quantity
+        super(Towels, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Полотенце'
