@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title>Главная</title>
 </head>
 <body>
 
+{% block content %}
+<p><b>Халаты</b></p>
+<table border="5">
+    <tr><th>Тип</th><th>Остаток</th><th>Стоимость</th></tr>
+    <tr><td>Махровые</td><td>{{ total_mahra }}</td><td>{{ total_price_mahra }}</td></tr>
+    <tr><td>Флисовые</td><td>{{ total_fliece }}</td><td>{{ total_price_fliece }}</td></tr>
+    <tr><td>Итог</td><td>{{ total_bathrobes }}</td><td>{{ total_price_bathrobes }}</td></tr>
+</table>
+
+<p><b>Полотенца</b></p>
+<table border="5">
+    <tr><th>Размер</th><th>Остаток</th><th>Стоимость</th></tr>
+    <tr><td>50*90</td><td>{{ total_50_90 }}</td><td>{{ total_price_50_90 }}</td></tr>
+    <tr><td>70*130</td><td>{{ total_70_130 }}</td><td>{{ total_price_70_130 }}</td></tr>
+    <tr><td>Итог</td><td>{{ total_towels }}</td><td>{{ total_price_towels }}</td></tr>
+</table>
+
+<p><b>Игрушки</b></p>
+<table border="5">
+    <tr><th>Бренд</th><th>Остаток</th><th>Стоимость</th></tr>
+    <tr><td>Зайка Ми</td><td>{{ total_mi }}</td><td>{{ total_price_mi }}</td></tr>
+    <tr><td>Jadck&Lin</td><td>{{ total_jack }}</td><td>{{ total_price_jack }}</td></tr>
+    <tr><td>Podariya</td><td>{{ total_podariya }}</td><td>{{ total_price_podariya }}</td></tr>
+    <tr><td>Другие</td><td>{{ total_other }}</td><td>{{ total_price_other }}</td></tr>
+    <tr><td>Итог</td><td>{{ total_toys }}</td><td>{{ total_price_toys }}</td></tr>
+</table>
+
+{% endblock content %}
 </body>
 </html>

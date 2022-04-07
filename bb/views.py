@@ -2,6 +2,70 @@ from django.shortcuts import render
 from .models import Toys, Towels, Bathrobes
 from django.db.models import Avg, Sum
 
+def index(request):
+    bathrobe_mahra = Bathrobes.objects.filter(type='Махровый')
+    bathrobe_fliece= Bathrobes.objects.filter(type='Флисовый')
+    towel_50_90 = Towels.objects.filter(size='50*90')
+    towel_70_130 = Towels.objects.filter(size='70*130')
+    toys_mi = Toys.objects.filter(toys='Зайка Ми')
+    toys_jack = Toys.objects.filter(toys='Jack&Lin')
+    toys_podariya = Toys.objects.filter(toys='Подария')
+    toys_other = Toys.objects.filter(toys='Other')
+
+    total_mahra = bathrobe_mahra.aggregate(Sum('quantity'))['quantity__sum']
+    total_price_mahra = bathrobe_mahra.aggregate(Sum('price_quantity'))['price_quantity__sum']
+    total_fliece = bathrobe_fliece.aggregate(Sum('quantity'))['quantity__sum']
+    total_price_fliece = bathrobe_fliece.aggregate(Sum('price_quantity'))['price_quantity__sum']
+    total_bathrobes = (total_mahra + total_fliece)
+    total_price_bathrobes = (total_price_mahra + total_price_fliece)
+
+    total_50_90 = towel_50_90.aggregate(Sum('quantity'))['quantity__sum']
+    total_price_50_90 = towel_50_90.aggregate(Sum('price_quantity'))['price_quantity__sum']
+    total_70_130 = towel_70_130.aggregate(Sum('quantity'))['quantity__sum']
+    total_price_70_130 = towel_70_130.aggregate(Sum('price_quantity'))['price_quantity__sum']
+    total_towels = total_50_90 + total_70_130
+    total_price_towels = total_price_50_90 + total_price_70_130
+
+    total_mi = toys_mi.aggregate(Sum('quantity'))['quantity__sum']
+    total_price_mi = toys_mi.aggregate(Sum('price_quantity'))['price_quantity__sum']
+    total_jack = toys_jack.aggregate(Sum('quantity'))['quantity__sum']
+    total_price_jack = toys_jack.aggregate(Sum('price_quantity'))['price_quantity__sum']
+    total_podariya = toys_podariya.aggregate(Sum('quantity'))['quantity__sum']
+    total_price_podariya = toys_podariya.aggregate(Sum('price_quantity'))['price_quantity__sum']
+    total_other = toys_other.aggregate(Sum('quantity'))['quantity__sum']
+    total_price_other = toys_other.aggregate(Sum('price_quantity'))['price_quantity__sum']
+
+    total_toys = total_mi + total_jack + total_podariya + total_other
+    total_price_toys = total_price_mi + total_price_jack + total_price_podariya + total_price_other
+
+
+    context = {'total_mahra': total_mahra,
+               'total_price_mahra': total_price_mahra,
+               'total_fliece': total_fliece,
+               'total_price_fliece': total_price_fliece,
+               'total_bathrobes': total_bathrobes,
+               'total_price_bathrobes': total_price_bathrobes,
+               'total_50_90': total_50_90,
+               'total_price_50_90': total_price_50_90,
+               'total_70_130': total_70_130,
+               'total_price_70_130': total_price_70_130,
+               'total_towels': total_towels,
+               'total_price_towels': total_price_towels,
+               'total_mi': total_mi,
+               'total_price_mi': total_price_mi,
+               'total_jack': total_jack,
+               'total_price_jack': total_price_jack,
+               'total_podariya': total_podariya,
+               'total_price_podariya': total_price_podariya,
+               'total_other': total_other,
+               'total_price_other': total_price_other,
+               'total_toys': total_toys,
+               'total_price_toys': total_price_toys,
+               }
+
+    return render(request, 'bb/index.html', context)
+
+
 def toys(request):
     """display all toys"""
     toys = Toys.objects.all()

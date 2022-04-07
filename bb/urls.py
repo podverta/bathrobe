@@ -6,7 +6,7 @@ from . import  views
 app_name = 'learning_logs'
 urlpatterns = [
     #home page
-#    path('', views.index, name='index'),
+    path('', views.index, name='index'),
     #page with the list all themes
     path('toys/', views.toys, name='toys'),
     path('towels/', views.towels, name='towels'),
