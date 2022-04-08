@@ -46,7 +46,7 @@ class Toys(Category):
                                 verbose_name='Комментарий')
 
     price_quantity = models.DecimalField(max_digits=12, blank=True,
-                                         decimal_places=2,
+                                         decimal_places=2, default=0,
                                          verbose_name='Общая стоимость')
 
     def save(self, *args, **kwargs):
@@ -99,11 +99,11 @@ class Bathrobes(Category):
     size = models.CharField(max_length=20, choices=size_choices,
                             verbose_name='Размер')
     price = models.DecimalField(max_digits=12, decimal_places=2,
-                                verbose_name='Стоимость', default='3300')
+                                verbose_name='Стоимость', default=3300)
     comments = models.TextField(max_length=500, blank=True,
                                 verbose_name='Комментарий')
     price_quantity = models.DecimalField(max_digits=12, blank=True,
-                                         decimal_places=2,
+                                         decimal_places=2, default=0,
                                          verbose_name='Общая стоимость')
 
     def save(self, *args, **kwargs):
@@ -153,7 +153,7 @@ class Towels(Category):
     comments = models.TextField(max_length=500, blank=True,
                                 verbose_name='Комментарий')
     price_quantity = models.DecimalField(max_digits=12, blank=True,
-                                         decimal_places=2,
+                                         decimal_places=2, default=0,
                                          verbose_name='Общая стоимость')
 
     def save(self, *args, **kwargs):

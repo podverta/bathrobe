@@ -11,56 +11,72 @@ def index(request):
     toys_jack = Toys.objects.filter(toys='Jack&Lin')
     toys_podariya = Toys.objects.filter(toys='Подария')
     toys_other = Toys.objects.filter(toys='Other')
-
-    total_mahra = bathrobe_mahra.aggregate(Sum('quantity'))['quantity__sum']
-    total_price_mahra = bathrobe_mahra.aggregate(Sum('price_quantity'))['price_quantity__sum']
-    total_fliece = bathrobe_fliece.aggregate(Sum('quantity'))['quantity__sum']
-    total_price_fliece = bathrobe_fliece.aggregate(Sum('price_quantity'))['price_quantity__sum']
+    total_mahra = bathrobe_mahra.aggregate(
+        Sum('quantity'))['quantity__sum']
+    total_price_mahra = bathrobe_mahra.aggregate(
+        Sum('price_quantity'))['price_quantity__sum']
+    total_fliece = bathrobe_fliece.aggregate(
+        Sum('quantity'))['quantity__sum']
+    total_price_fliece = bathrobe_fliece.aggregate(
+        Sum('price_quantity'))['price_quantity__sum']
     total_bathrobes = (total_mahra + total_fliece)
-    total_price_bathrobes = (total_price_mahra + total_price_fliece)
+    total_price_bathrobes = total_price_mahra + total_price_fliece
 
-    total_50_90 = towel_50_90.aggregate(Sum('quantity'))['quantity__sum']
-    total_price_50_90 = towel_50_90.aggregate(Sum('price_quantity'))['price_quantity__sum']
-    total_70_130 = towel_70_130.aggregate(Sum('quantity'))['quantity__sum']
-    total_price_70_130 = towel_70_130.aggregate(Sum('price_quantity'))['price_quantity__sum']
+    total_50_90 = towel_50_90.aggregate(
+        Sum('quantity'))['quantity__sum']
+    total_price_50_90 = towel_50_90.aggregate(
+        Sum('price_quantity'))['price_quantity__sum']
+    total_70_130 = towel_70_130.aggregate(
+        Sum('quantity'))['quantity__sum']
+    total_price_70_130 = towel_70_130.aggregate(
+        Sum('price_quantity'))['price_quantity__sum']
     total_towels = total_50_90 + total_70_130
     total_price_towels = total_price_50_90 + total_price_70_130
 
-    total_mi = toys_mi.aggregate(Sum('quantity'))['quantity__sum']
-    total_price_mi = toys_mi.aggregate(Sum('price_quantity'))['price_quantity__sum']
-    total_jack = toys_jack.aggregate(Sum('quantity'))['quantity__sum']
-    total_price_jack = toys_jack.aggregate(Sum('price_quantity'))['price_quantity__sum']
-    total_podariya = toys_podariya.aggregate(Sum('quantity'))['quantity__sum']
-    total_price_podariya = toys_podariya.aggregate(Sum('price_quantity'))['price_quantity__sum']
-    total_other = toys_other.aggregate(Sum('quantity'))['quantity__sum']
-    total_price_other = toys_other.aggregate(Sum('price_quantity'))['price_quantity__sum']
+    total_mi = toys_mi.aggregate(
+        Sum('quantity'))['quantity__sum']
+    total_price_mi = toys_mi.aggregate(
+        Sum('price_quantity'))['price_quantity__sum']
+    total_jack = toys_jack.aggregate(
+        Sum('quantity'))['quantity__sum']
+    total_price_jack = toys_jack.aggregate(
+        Sum('price_quantity'))['price_quantity__sum']
+    total_podariya = toys_podariya.aggregate(
+        Sum('quantity'))['quantity__sum']
+    total_price_podariya = toys_podariya.aggregate(
+        Sum('price_quantity'))['price_quantity__sum']
+    total_other = toys_other.aggregate(
+        Sum('quantity'))['quantity__sum']
+    total_price_other = toys_other.aggregate(
+        Sum('price_quantity'))['price_quantity__sum']
 
     total_toys = total_mi + total_jack + total_podariya + total_other
-    total_price_toys = total_price_mi + total_price_jack + total_price_podariya + total_price_other
+    total_price_toys = (total_price_mi + total_price_jack
+                        + total_price_podariya + total_price_other)
 
 
     context = {'total_mahra': total_mahra,
-               'total_price_mahra': total_price_mahra,
+               'total_price_mahra': round(total_price_mahra, 2),
                'total_fliece': total_fliece,
-               'total_price_fliece': total_price_fliece,
+               'total_price_fliece': round(total_price_fliece, 2),
                'total_bathrobes': total_bathrobes,
-               'total_price_bathrobes': total_price_bathrobes,
+               'total_price_bathrobes': round(total_price_bathrobes, 2),
                'total_50_90': total_50_90,
-               'total_price_50_90': total_price_50_90,
+               'total_price_50_90': round(total_price_50_90, 2),
                'total_70_130': total_70_130,
-               'total_price_70_130': total_price_70_130,
+               'total_price_70_130': round(total_price_70_130, 2),
                'total_towels': total_towels,
-               'total_price_towels': total_price_towels,
+               'total_price_towels': round(total_price_towels, 2),
                'total_mi': total_mi,
-               'total_price_mi': total_price_mi,
+               'total_price_mi': round(total_price_mi, 2),
                'total_jack': total_jack,
-               'total_price_jack': total_price_jack,
+               'total_price_jack': round(total_price_jack, 2),
                'total_podariya': total_podariya,
-               'total_price_podariya': total_price_podariya,
+               'total_price_podariya': round(total_price_podariya, 2),
                'total_other': total_other,
-               'total_price_other': total_price_other,
+               'total_price_other': round(total_price_other, 2),
                'total_toys': total_toys,
-               'total_price_toys': total_price_toys,
+               'total_price_toys': round(total_price_toys, 2),
                }
 
     return render(request, 'bb/index.html', context)
