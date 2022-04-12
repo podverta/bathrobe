@@ -24,7 +24,7 @@ class Category(models.Model):
     image = models.ImageField(upload_to='products/%Y/%m/%d',
                               blank=True,
                               verbose_name='Изображение')
-    quantity = models.IntegerField(verbose_name='Количество')
+    quantity = models.IntegerField(verbose_name='Количество', default=0)
 
 
     def __str__(self):

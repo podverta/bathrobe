@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Toys, Towels, Bathrobes
 from django.db.models import Avg, Sum
+from .forms import TowelsForm
 
 def index(request):
     bathrobe_mahra = Bathrobes.objects.filter(type='Махровый')
@@ -125,6 +126,18 @@ def bathrobes(request):
 
     return render(request, 'bb/bathrobes.html', context)
 
+def edit_towels(request, towels_id):
+    towel= Towels.objects.get(id=towels_id)
+    type = towel.type_name
 
+    if request.method != 'POST':
+        form = TowelsForm(instance=towel)
+    else:
+        form = TowelsForm(instance=towel, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('bb:towels', towels_id=towel.id)
+    context = {'towel': towel, 'type': type, 'form': form}
+    return render(request, 'bb/edit_towels.html', context)
 
 # Create your views here.

@@ -1,9 +1,9 @@
 """Defines schemas the URL for learning_logs"""
 
 from django.urls import path
-from . import  views
+from . import views
 
-app_name = 'learning_logs'
+app_name = 'bb'
 urlpatterns = [
     #home page
     path('', views.index, name='index'),
@@ -11,5 +11,6 @@ urlpatterns = [
     path('toys/', views.toys, name='toys'),
     path('towels/', views.towels, name='towels'),
     path('bathrobes/', views.bathrobes, name='bathrobes'),
+    path('edit_towels/<int:towels_id>/', views.edit_towels, name='edit_towels'),
     ]
 

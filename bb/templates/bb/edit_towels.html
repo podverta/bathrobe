@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit_towels</title>
+</head>
+<body>
+{% block content %}
+<p><a href="{% url 'bb:towels' towel.id %}">{{ towel }}</a> </p>
+<p>Edit towel:</p>
+
+<form action="{% 'bb:edit_towels' towel.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">save changes</button>
+</form>
+{% endblock content %}
+</body>
+</html>

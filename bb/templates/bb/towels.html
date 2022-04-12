@@ -9,11 +9,13 @@
 {% block content %}
 
 <table border="1">
-    <tr><th>Тип</th><th>Цвет</th><th>Размер</th><th>Остаток</th><th>Стоимость</th><th>Стоимость всего</th></tr>
+    <tr><th>Тип</th><th>Цвет</th><th>Размер</th><th>Остаток</th><th>Стоимость</th><th>Стоимость всего</th><th>Редактировать</th></tr>
     {% for towel in towels %}
             <tr><td>{{ towel.type_name }}</td><td>{{ towel.color }}</td><td>{{ towel.size }}</td>
-                <td>{{ towel.quantity }}</td><td>{{ towel.price }}</td><td>{{ towel.price_quantity }}</td></tr>
+                <td>{{ towel.quantity }}</td><td>{{ towel.price }}</td><td>{{ towel.price_quantity }}</td><td><p><a href="{% url 'bb:edit_towels' towel.id %}">Edit</a></p></td></tr>
+
     {% endfor %}
+
         <tr><td colspan="3">Всего</td><td>{{ total }}</td><td>{{ avg_price }}</td><td>{{ price_all }}</td></tr>
 </table>
 
