@@ -136,7 +136,7 @@ def edit_towels(request, towels_id):
         form = TowelsForm(instance=towel, data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('bb:towels', towels_id=towel.id)
+            return redirect('bb:towels')
     context = {'towel': towel, 'type': type, 'form': form}
     return render(request, 'bb/edit_towels.html', context)
 

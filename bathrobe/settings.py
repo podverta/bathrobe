@@ -33,6 +33,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     #my apps
     'bb',
+    'users',
+    #other apps
+    'bootstrap4',
     #default apps
     'django.contrib.admin',
     'django.contrib.auth',
