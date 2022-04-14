@@ -2,23 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Редактировать полотенце</title>
+    <title>Новое полотенце</title>
 </head>
 <body>
 {% extends "bb/base.html" %}
 {% load bootstrap4 %}
 {% block page_header %}
-    <h3><b>Изменить: </b>{{ towel }}</h3>
+    <h3><b>Добавить: </b>{{ towel }}</h3>
 {% endblock page_header %}
 {% block content %}
 
-
-
-<form action="{% url 'bb:edit_towels' towel.id %}" method="post" class="form">
+<form action="{% url 'bb:new_towels' %}" method="post" class="form">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% buttons %}
-    <button name="submit" class="btn btn-primary">Сохранить</button>
+    <button name="submit" class="btn btn-primary">Добавить</button>
     {% endbuttons %}
 </form>
 {% endblock content %}

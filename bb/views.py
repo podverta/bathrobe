@@ -140,4 +140,19 @@ def edit_towels(request, towels_id):
     context = {'towel': towel, 'type': type, 'form': form}
     return render(request, 'bb/edit_towels.html', context)
 
-# Create your views here.
+def new_towels(request):
+    if request.method != 'POST':
+        # data not was sent; creates clear form.
+        form = TowelsForm()
+    else:
+        #sent data POST; process data.
+        form = TowelsForm(data=request.POST)
+        if form.is_valid():
+            new_towels = form.save(commit=False, )
+            new_towels.save()
+            return redirect('bb:towels')
+    #output an epmty or invalid form:
+    context = {'form': form}
+    return render(request, 'bb/new_towels.html', context)
+
+

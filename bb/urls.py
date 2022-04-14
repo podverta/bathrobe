@@ -12,5 +12,6 @@ urlpatterns = [
     path('towels/', views.towels, name='towels'),
     path('bathrobes/', views.bathrobes, name='bathrobes'),
     path('edit_towels/<int:towels_id>/', views.edit_towels, name='edit_towels'),
+    path('new_towels/', views.new_towels, name='new_towels'),
     ]
 

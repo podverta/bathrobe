@@ -19,7 +19,7 @@
 
     {% endfor %}
 
-        <tr><td colspan="3">Всего</td><td>{{ total }}</td><td>{{ avg_price }}</td><td>{{ price_all }}</td></tr>
+        <tr><td colspan="3">Всего</td><td>{{ total }}</td><td>{{ avg_price }}</td><td>{{ price_all }}</td><td><p><a href="{% url 'bb:new_towels' %}">Добавить</a></p></td></tr>
 </table>
 
 {% endblock content %}
