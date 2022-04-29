@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import Toys, Towels, Bathrobes
 from django.db.models import Avg, Sum
 from .forms import TowelsForm
+from django.urls import reverse_lazy
+from django.views.generic.edit import DeleteView
 
 def index(request):
     bathrobe_mahra = Bathrobes.objects.filter(type='Махровый')
@@ -12,6 +14,8 @@ def index(request):
     toys_jack = Toys.objects.filter(toys='Jack&Lin')
     toys_podariya = Toys.objects.filter(toys='Подария')
     toys_other = Toys.objects.filter(toys='Other')
+
+
     total_mahra = bathrobe_mahra.aggregate(
         Sum('quantity'))['quantity__sum']
     total_price_mahra = bathrobe_mahra.aggregate(
@@ -131,14 +135,21 @@ def edit_towels(request, towels_id):
     type = towel.type_name
 
     if request.method != 'POST':
-        form = TowelsForm(instance=towel)
+        form = TowelsForm()
     else:
-        form = TowelsForm(instance=towel, data=request.POST)
+        form = TowelsForm(data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('bb:towels')
     context = {'towel': towel, 'type': type, 'form': form}
     return render(request, 'bb/edit_towels.html', context)
+
+class DeleteTowels(DeleteView):
+
+    model = Towels
+    template_name = 'bb/delete_towels.html'
+    success_url = reverse_lazy('bb:towels')
+
 
 def new_towels(request):
     if request.method != 'POST':
@@ -146,9 +157,9 @@ def new_towels(request):
         form = TowelsForm()
     else:
         #sent data POST; process data.
-        form = TowelsForm(data=request.POST)
+        form = TowelsForm(data=request.POST,)
         if form.is_valid():
-            new_towels = form.save(commit=False, )
+            new_towels = form.save(commit=False,)
             new_towels.save()
             return redirect('bb:towels')
     #output an epmty or invalid form:

@@ -1,14 +1,11 @@
-from django import forms
+from django.forms import ModelForm, Select, ModelChoiceField, ChoiceField, widgets, forms, IntegerField, HiddenInput, CharField
+from .models import Towels, Item
 
-from .models import Towels
+class TowelsForm(ModelForm):
+    type_name = ModelChoiceField(Item.objects.filter(name='Полотенце'), label='Тип товара', initial='Полотенце',)
 
-class TowelsForm(forms.ModelForm):
     class Meta:
         model = Towels
+        fields = [ 'type_name', 'color', 'size', 'price', 'quantity', 'comments']
 
-        fields = ['type_name', 'color', 'size',
-                  'quantity', 'price', 'comments', 'size',]
 
-        widgets = {
-            'comments': forms.Textarea(attrs={'cols': 80}),
-        }

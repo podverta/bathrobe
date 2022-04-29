@@ -112,7 +112,7 @@ class Bathrobes(Category):
     class Meta:
         verbose_name = 'Халат'
         verbose_name_plural = 'Халаты'
-
+        ordering = ('type',)
 
     def __str__(self):
         return "{} : {} : {} : {} : {} шт.".format(self.type_name, self.type,
@@ -163,6 +163,7 @@ class Towels(Category):
     class Meta:
         verbose_name = 'Полотенце'
         verbose_name_plural = 'Полотенца'
+        ordering = ('size',)
 
     def __str__(self):
         return "{} : {} : {} : {} шт.".format(self.type_name, self.size,

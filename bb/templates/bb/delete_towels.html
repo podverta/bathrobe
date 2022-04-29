@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete towels</title>
+</head>
+<body>
+{% extends "bb/base.html" %}
+{% load bootstrap4 %}
+{% block page_header %}
+    <h3><b>Подтверждение на удаление </b>{{ towel }}</h3>
+{% endblock page_header %}
+{% block content %}
+
+
+<form method="post">{% csrf_token %}
+    <BIG><p>Вы действительно хотите удалить: "{{ towels }}"?</p></BIG>
+    {{ form }}
+    <input type="submit" value="Да">
+    <input type=button value="Отмена" onClick="javascript:history.go(-1);">
+</form>
+{% endblock content %}
+
+</body>
+</html>

@@ -13,5 +13,7 @@ urlpatterns = [
     path('bathrobes/', views.bathrobes, name='bathrobes'),
     path('edit_towels/<int:towels_id>/', views.edit_towels, name='edit_towels'),
     path('new_towels/', views.new_towels, name='new_towels'),
+    path('delete_towels/<int:pk>/', views.DeleteTowels.as_view(),
+         name='delete_towels'),
     ]
 

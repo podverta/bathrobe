@@ -15,7 +15,7 @@
    <thead class="thead-light"><tr><th scope="col">Тип</th><th scope="col">Цвет</th><th scope="col">Размер</th><th scope="col">Остаток</th><th scope="col">Стоимость</th><th scope="col">Стоимость всего</th><th scope="col">Редактировать</th></tr></thead>
     {% for towel in towels %}
             <tr><td>{{ towel.type_name }}</td><td>{{ towel.color }}</td><td>{{ towel.size }}</td>
-                <td>{{ towel.quantity }}</td><td>{{ towel.price }}</td><td>{{ towel.price_quantity }}</td><td><p><a href="{% url 'bb:edit_towels' towel.id %}">Редактировать</a></p></td></tr>
+                <td>{{ towel.quantity }}</td><td>{{ towel.price }}</td><td>{{ towel.price_quantity }}</td><td><p><a href="{% url 'bb:edit_towels' towel.id %}">Редактировать</a></br></br><a href="{% url 'bb:delete_towels' towel.id %}">Удалить</a></p></td></tr>
 
     {% endfor %}
 
