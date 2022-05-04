@@ -131,17 +131,16 @@ def bathrobes(request):
     return render(request, 'bb/bathrobes.html', context)
 
 def edit_towels(request, towels_id):
-    towel= Towels.objects.get(id=towels_id)
-    type = towel.type_name
+    towel = Towels.objects.get(id=towels_id)
 
     if request.method != 'POST':
-        form = TowelsForm()
+        form = TowelsForm(instance=towel)
     else:
         form = TowelsForm(data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('bb:towels')
-    context = {'towel': towel, 'type': type, 'form': form}
+    context = {'towel': towel, 'form': form}
     return render(request, 'bb/edit_towels.html', context)
 
 class DeleteTowels(DeleteView):

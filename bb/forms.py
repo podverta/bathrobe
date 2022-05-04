@@ -1,11 +1,13 @@
-from django.forms import ModelForm, Select, ModelChoiceField, ChoiceField, widgets, forms, IntegerField, HiddenInput, CharField
+from django.forms import ModelForm, ModelChoiceField
 from .models import Towels, Item
 
 class TowelsForm(ModelForm):
-    type_name = ModelChoiceField(Item.objects.filter(name='Полотенце'), label='Тип товара', initial='Полотенце',)
+    type_name = ModelChoiceField(Item.objects.filter(name='Полотенца'),
+                                 label='Тип товара', initial='Полотенца',)
 
     class Meta:
         model = Towels
-        fields = [ 'type_name', 'color', 'size', 'price', 'quantity', 'comments']
+        fields = ['type_name', 'color', 'size',
+                   'price', 'quantity', 'comments']
 
 
