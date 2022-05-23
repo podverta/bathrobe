@@ -24,7 +24,7 @@ def index(request):
         Sum('quantity'))['quantity__sum']
     total_price_fliece = bathrobe_fliece.aggregate(
         Sum('price_quantity'))['price_quantity__sum']
-    total_bathrobes = (total_mahra + total_fliece)
+    total_bathrobes = total_mahra + total_fliece
     total_price_bathrobes = total_price_mahra + total_price_fliece
 
     total_50_90 = towel_50_90.aggregate(
@@ -35,6 +35,7 @@ def index(request):
         Sum('quantity'))['quantity__sum']
     total_price_70_130 = towel_70_130.aggregate(
         Sum('price_quantity'))['price_quantity__sum']
+
     total_towels = total_50_90 + total_70_130
     total_price_towels = total_price_50_90 + total_price_70_130
 
@@ -136,7 +137,7 @@ def edit_towels(request, towels_id):
     if request.method != 'POST':
         form = TowelsForm(instance=towel)
     else:
-        form = TowelsForm(data=request.POST)
+        form = TowelsForm(instance=towel, data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('bb:towels')

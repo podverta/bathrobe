@@ -26,9 +26,6 @@ class Category(models.Model):
 
     type_name = models.ForeignKey(Item, on_delete=models.CASCADE,
                                   verbose_name='Тип товара')
-    image = models.ImageField(upload_to='products/%Y/%m/%d',
-                              blank=True,
-                              verbose_name='Изображение')
     quantity = models.IntegerField(verbose_name='Количество', default=0)
 
 
@@ -153,11 +150,11 @@ class Towels(Category):
                              verbose_name='Цвет')
     size = models.CharField(max_length=20, choices=towel_size_choices,
                             verbose_name='Размер')
-    price = models.DecimalField(max_digits=12, decimal_places=2,
-                                verbose_name='Стоимость')
+    price = models.DecimalField(max_digits=12, decimal_places=2, blank=False,
+                                null=False, verbose_name='Стоимость', default=0)
     comments = models.TextField(max_length=500, blank=True,
                                 verbose_name='Комментарий')
-    price_quantity = models.DecimalField(max_digits=12, blank=True,
+    price_quantity = models.DecimalField(max_digits=12, blank=False, null=False,
                                          decimal_places=2, default=0,
                                          verbose_name='Общая стоимость')
 
