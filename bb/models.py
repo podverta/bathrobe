@@ -70,11 +70,13 @@ class Bathrobes(Category):
         ('XXL', 'XXL'),
         ('XXXL', 'XXXL'),
     ]
+
     type_choices = [
         ('Махровый', 'Махровый'),
         ('Флисовый', 'Флисовый'),
         ('Другие', 'Другие'),
     ]
+
     color_choices = [
         ('Синий', 'Синий'),
         ('Зеленый', 'Зеленый'),
@@ -94,6 +96,7 @@ class Bathrobes(Category):
         ('Антрацит', 'Антрацит'),
         ('Джинс', 'Джинс'),
     ]
+
     type = models.CharField(max_length=20, choices=type_choices,
                             verbose_name='Материал')
     color = models.CharField(max_length=20, choices=color_choices,
@@ -124,6 +127,7 @@ class Towels(Category):
         ('50*90', '50*90'),
         ('70*130', '70*130'),
     ]
+
     towel_color_choices = [
         ('Синий', 'Синий'),
         ('Зеленый', 'Зеленый'),
@@ -146,6 +150,7 @@ class Towels(Category):
         ('Антрацит', 'Антрацит'),
         ('Джинс', 'Джинс'),
     ]
+
     color = models.CharField(max_length=20, choices=towel_color_choices,
                              verbose_name='Цвет')
     size = models.CharField(max_length=20, choices=towel_size_choices,
